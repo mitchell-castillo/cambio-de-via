@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f3efe5">
+  <meta name="description" content="Seis pequeños puzles ferroviarios. Cambia las agujas, conecta las rutas y lleva cada tren a su andén. Sin reloj, con teclado y táctil.">
+  <title>Cambio de vía · Daily Games</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=1">
+  <script type="module" src="app.js?v=1"></script>
+</head>
+<body>
+  <a class="skip" href="#game">Saltar al juego</a>
+  <header class="site-header">
+    <a class="brand" href="https://mitchell-castillo.github.io/daily-games/"><span class="brand-mark" aria-hidden="true">▦</span> Daily Games</a>
+    <span class="edition">21 OCT 2026 <span aria-hidden="true">/</span> JUEGO 04</span>
+    <a class="catalogue-link" href="https://mitchell-castillo.github.io/daily-games/">Todos los juegos <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="title">
+      <div><p class="eyebrow"><span class="signal-dot"></span> PUZLE FERROVIARIO · SIN PRISAS</p><h1 id="title">Cambio de <em>vía.</em></h1></div>
+      <p class="intro-copy">Un pequeño cambio.<br>Todos en su destino.<span>Conecta las vías y da la salida.</span></p>
+    </section>
+    <p id="storage-warning" class="warning" hidden>El navegador no permite guardar el avance. Puedes jugar durante esta visita; los cambios se perderán al cerrar.</p>
+    <section id="game" class="game-layout" aria-label="Juego Cambio de vía">
+      <div class="rail-map">
+        <div class="map-heading"><span id="map-label">PLANO DE VÍAS / 01</span><span class="map-key"><i></i> Aguja <span class="bridge-icon" aria-hidden="true">╪</span> Puente</span></div>
+        <div id="board" class="board" role="group" aria-label="Plano de vías. Pulsa una aguja para cambiar su ruta."></div>
+        <div class="map-footer"><span><span class="signal-dot"></span> <span id="plan-label">PREPARANDO RUTAS</span></span><span>TOCA LAS AGUJAS <span aria-hidden="true">↻</span></span></div>
+      </div>
+      <aside class="control-panel" aria-labelledby="level-title">
+        <div class="station-line"><span class="eyebrow" id="station-number">ESTACIÓN 01 / 06</span><span id="completion-label">0 de 6</span></div>
+        <progress id="progress" max="6" value="0" aria-label="Estaciones resueltas"></progress>
+        <h2 id="level-title"></h2>
+        <p id="level-note" class="level-note"></p>
+        <div id="train-list" class="train-list" aria-label="Trenes y destinos"></div>
+        <div class="stats"><div><span id="moves">0</span><small>CAMBIOS</small></div><div><span id="best">—</span><small>MEJOR MARCA</small></div></div>
+        <div id="result" class="result" role="status" aria-live="polite" aria-atomic="true">Prepara las vías y pulsa «Dar salida».</div>
+        <button id="play" class="button primary"><span aria-hidden="true">▶</span> Dar salida</button>
+        <div class="secondary-actions"><button id="step" class="button">Paso a paso</button><button id="plan" class="button" disabled>Volver al plano</button></div>
+        <div class="edit-actions"><button id="undo" class="text-button" disabled><span aria-hidden="true">↶</span> Deshacer <kbd>Z</kbd></button><button id="reset" class="text-button" disabled>Reiniciar <kbd>R</kbd></button></div>
+        <button id="next" class="button next" hidden>Siguiente estación <span aria-hidden="true">→</span></button>
+        <div class="stations"><h3>EL RECORRIDO</h3><nav id="levels" aria-label="Elegir estación"></nav></div>
+      </aside>
+    </section>
+    <section class="instructions" aria-labelledby="how-title">
+      <div><p class="eyebrow">TU TURNO AL MANDO</p><h2 id="how-title">Cada vía cuenta.</h2><p>Seis planos originales. Ningún límite de tiempo. Todos los trenes salen a la vez.</p></div>
+      <ol>
+        <li><span>01</span><div><h3>Prepara las agujas</h3><p>Toca los círculos de color naranja para alternar su conexión. La vía oscura está activa; el ramal de puntos está cerrado.</p></div></li>
+        <li><span>02</span><div><h3>Une cada letra con su letra</h3><p>El tren A debe llegar al andén A, B al B y C al C. Los puentes cruzan dos vías sin conectarlas. Fuera de un puente, dos trenes no pueden compartir una casilla ni cruzarse de frente.</p></div></li>
+        <li><span>03</span><div><h3>Comprueba tu plan</h3><p>Da la salida o avanza paso a paso. Si una ruta falla, vuelve al plano y ajústala. Resuelve la estación para abrir la siguiente; intenta mejorar tu número de cambios.</p></div></li>
+      </ol>
+      <p class="keyboard"><strong>Teclado</strong> Tab o flechas para recorrer las agujas · Enter o Espacio para cambiarlas · Z deshace · R reinicia · P pausa · Esc vuelve al plano. Los atajos actúan dentro del juego.</p>
+    </section>
+  </main>
+  <footer><span>Hecho para un pequeño descanso.</span><p>Avance guardado solo en este navegador. Sin cuentas, anuncios ni telemetría.</p><a href="https://mitchell-castillo.github.io/daily-games/">Volver a Daily Games <span aria-hidden="true">↗</span></a></footer>
+  <dialog id="reset-dialog" aria-labelledby="reset-title" aria-describedby="reset-description"><form method="dialog"><p class="eyebrow">VOLVER A EMPEZAR</p><h2 id="reset-title">¿Reiniciar esta estación?</h2><p id="reset-description">Se borrarán los cambios de este intento. Tus estaciones resueltas y mejores marcas se conservarán.</p><div class="dialog-actions"><button value="cancel" class="button" autofocus>Seguir jugando</button><button value="reset" class="button primary">Reiniciar estación</button></div></form></dialog>
+  <noscript><p class="warning">Activa JavaScript para jugar. El juego se ejecuta en tu navegador y no envía tu avance.</p></noscript>
+</body>
+</html>
